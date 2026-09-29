@@ -1,26 +1,27 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, lazy, Suspense } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import { LoginPage } from './components/auth/LoginPage';
-import { StoreSelectPage } from './components/store-select/StoreSelectPage';
 import { Header } from './components/common/Header';
 import { Sidebar } from './components/common/Sidebar';
 import { ToastContainer } from './components/common/Toast';
 import { FirstLoginPasswordModal } from './components/auth/FirstLoginPasswordModal';
 
-import { MainDashboard } from './components/dashboard/MainDashboard';
-import { StoreDashboard } from './components/dashboard/StoreDashboard';
-import { InventoryPage } from './components/inventory/InventoryPage';
-import { CategoriesPage } from './components/categories/CategoriesPage';
-import { StockInPage } from './components/transactions/StockInPage';
-import { StockOutPage } from './components/transactions/StockOutPage';
-import { DamagedItemsPage } from './components/transactions/DamagedItemsPage';
-import { ReturnsPage } from './components/returns/ReturnsPage';
-import { AttendancePage } from './components/attendance/AttendancePage';
-import { EmployeesPage } from './components/employees/EmployeesPage';
-import { StoresPage } from './components/stores/StoresPage';
-import { ReportsPage } from './components/reports/ReportsPage';
-import { ActivityLogPage } from './components/activity-log/ActivityLogPage';
-import { SettingsPage } from './components/settings/SettingsPage';
+// Code-split authenticated dashboard subpages for high-performance mobile initial load
+const MainDashboard = lazy(() => import('./components/dashboard/MainDashboard').then((m) => ({ default: m.MainDashboard })));
+const StoreDashboard = lazy(() => import('./components/dashboard/StoreDashboard').then((m) => ({ default: m.StoreDashboard })));
+const InventoryPage = lazy(() => import('./components/inventory/InventoryPage').then((m) => ({ default: m.InventoryPage })));
+const CategoriesPage = lazy(() => import('./components/categories/CategoriesPage').then((m) => ({ default: m.CategoriesPage })));
+const StockInPage = lazy(() => import('./components/transactions/StockInPage').then((m) => ({ default: m.StockInPage })));
+const StockOutPage = lazy(() => import('./components/transactions/StockOutPage').then((m) => ({ default: m.StockOutPage })));
+const DamagedItemsPage = lazy(() => import('./components/transactions/DamagedItemsPage').then((m) => ({ default: m.DamagedItemsPage })));
+const ReturnsPage = lazy(() => import('./components/returns/ReturnsPage').then((m) => ({ default: m.ReturnsPage })));
+const AttendancePage = lazy(() => import('./components/attendance/AttendancePage').then((m) => ({ default: m.AttendancePage })));
+const EmployeesPage = lazy(() => import('./components/employees/EmployeesPage').then((m) => ({ default: m.EmployeesPage })));
+const StoresPage = lazy(() => import('./components/stores/StoresPage').then((m) => ({ default: m.StoresPage })));
+const ReportsPage = lazy(() => import('./components/reports/ReportsPage').then((m) => ({ default: m.ReportsPage })));
+const ActivityLogPage = lazy(() => import('./components/activity-log/ActivityLogPage').then((m) => ({ default: m.ActivityLogPage })));
+const SettingsPage = lazy(() => import('./components/settings/SettingsPage').then((m) => ({ default: m.SettingsPage })));
+const StoreSelectPage = lazy(() => import('./components/store-select/StoreSelectPage').then((m) => ({ default: m.StoreSelectPage })));
 
 const AppContent: React.FC = () => {
   const { currentUser, currentPage, activeStoreId, setSidebarOpen } = useApp();
@@ -107,7 +108,16 @@ const AppContent: React.FC = () => {
           ref={mainRef}
           className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto"
         >
-          {renderCurrentPage()}
+          <Suspense
+            fallback={
+              <div className="flex flex-col items-center justify-center min-h-[360px] w-full gap-3">
+                <div className="w-9 h-9 rounded-full border-3 border-indigo-600 border-t-transparent animate-spin" />
+                <span className="text-xs font-semibold text-slate-500">Memuat halaman...</span>
+              </div>
+            }
+          >
+            {renderCurrentPage()}
+          </Suspense>
         </main>
       </div>
 

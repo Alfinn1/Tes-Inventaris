@@ -1,24 +1,35 @@
-import express from 'express';
-import { createServer as createViteServer } from 'vite';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import type { IncomingMessage, ServerResponse } from 'http';
 import nodemailer from 'nodemailer';
 
-dotenv.config();
+interface SendOtpRequestBody {
+  email?: string;
+  otp?: string;
+  name?: string;
+  type?: 'verification' | 'reset' | 'unlink';
+}
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+export default async function handler(req: any, res: any) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
 
-const app = express();
-const port = 3000;
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
-app.use(express.json());
+  if (req.method !== 'POST') {
+    return res.status(405).json({ success: false, message: 'Method not allowed. Use POST.' });
+  }
 
-// API route to send OTP (supports email linking verification and password reset)
-app.post('/api/send-otp', async (req, res) => {
   try {
-    const { email, otp, name, type = 'verification' } = req.body;
+    const body: SendOtpRequestBody = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {};
+    const { email, otp, name, type = 'verification' } = body;
+
     if (!email || !otp) {
       return res.status(400).json({ success: false, message: 'Email dan kode OTP diperlukan.' });
     }
@@ -62,6 +73,7 @@ app.post('/api/send-otp', async (req, res) => {
         <title>${emailTitle}</title>
       </head>
       <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; margin: 0; padding: 24px; color: #1e293b;">
+        <!-- Preheader text for inbox preview -->
         <div style="display: none; max-height: 0px; overflow: hidden; opacity: 0;">
           Kode verifikasi Anda adalah ${otp}. Berlaku selama 5 menit.
         </div>
@@ -103,78 +115,49 @@ app.post('/api/send-otp', async (req, res) => {
       </html>
     `;
 
-    // Mengirim email menggunakan Gmail SMTP (nodemailer)
     if (!gmailUser || !gmailPass) {
       return res.status(500).json({
         success: false,
-        message: 'Konfigurasi Gmail SMTP belum diatur di server.',
+        message: 'Konfigurasi Gmail SMTP belum diatur di environment server.',
       });
     }
 
-    try {
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: gmailUser,
-          pass: gmailPass,
-        },
-        connectionTimeout: 10000,
-        greetingTimeout: 10000,
-        socketTimeout: 15000,
-      });
+    // Configure transporter with connection timeouts
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: gmailUser,
+        pass: gmailPass,
+      },
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 15000,
+    });
 
-      await transporter.sendMail({
-        from: `"iPhone Repair Medan" <${gmailUser}>`,
-        to: cleanEmail,
-        subject: emailSubject,
-        text: emailText,
-        html: emailHtml,
-        headers: {
-          'X-Priority': '1',
-          'X-MSMail-Priority': 'High',
-          'Importance': 'high',
-          'Auto-Submitted': 'auto-generated',
-          'X-Auto-Response-Suppress': 'OOF, AutoReply',
-        },
-      });
+    await transporter.sendMail({
+      from: `"iPhone Repair Medan" <${gmailUser}>`,
+      to: cleanEmail,
+      subject: emailSubject,
+      text: emailText,
+      html: emailHtml,
+      headers: {
+        'X-Priority': '1',
+        'X-MSMail-Priority': 'High',
+        'Importance': 'high',
+        'Auto-Submitted': 'auto-generated',
+        'X-Auto-Response-Suppress': 'OOF, AutoReply',
+      },
+    });
 
-      return res.json({
-        success: true,
-        message: `Kode ${isReset ? 'reset sandi' : 'OTP'} resmi berhasil dikirim ke ${cleanEmail}. Silakan periksa inbox / spam Gmail Anda!`,
-      });
-    } catch (gmailErr: any) {
-      console.error('Nodemailer error:', gmailErr);
-      return res.status(500).json({
-        success: false,
-        message: `Gagal mengirim email: ${gmailErr?.message || 'Terjadi kesalahan pada layanan Gmail SMTP.'}`,
-      });
-    }
+    return res.status(200).json({
+      success: true,
+      message: `Kode ${isReset ? 'reset sandi' : 'OTP'} resmi berhasil dikirim ke ${cleanEmail}. Silakan periksa inbox / spam Gmail Anda!`,
+    });
   } catch (error: any) {
-    console.error('Error sending OTP:', error);
+    console.error('[API Send OTP Error]:', error);
     return res.status(500).json({
       success: false,
-      message: 'Terjadi kesalahan pada server saat memproses pengiriman email.',
+      message: `Gagal mengirim email: ${error?.message || 'Terjadi kesalahan pada layanan Gmail SMTP.'}`,
     });
   }
-});
-
-async function startServer() {
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.resolve(__dirname, 'dist')));
-    app.get('*', (_req, res) => {
-      res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-    });
-  } else {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: 'spa',
-    });
-    app.use(vite.middlewares);
-  }
-
-  app.listen(port, '0.0.0.0', () => {
-    console.log(`Server running on http://0.0.0.0:${port}`);
-  });
 }
-
-startServer();

@@ -463,7 +463,7 @@ export const SettingsPage: React.FC = () => {
       <div className="bg-white rounded-3xl border border-slate-200/80 shadow-[0_4px_25px_-4px_rgba(0,0,0,0.05)] overflow-hidden">
         
         {/* BAGIAN ATAS: AVATAR BESAR, NAMA & ROLE DENGAN ELEMEN DESAIN DEKORATIF */}
-        <div className="p-7 sm:p-9 relative bg-gradient-to-r from-white via-indigo-50/20 to-blue-50/40 overflow-hidden">
+        <div className="p-5 sm:p-9 relative bg-gradient-to-r from-white via-indigo-50/20 to-blue-50/40 overflow-hidden">
           
           {/* ===================================================================== */}
           {/* BACKGROUND DESIGN ELEMENTS (FLUID WAVES, ARCS, DOT MATRIX, LINE-ART)  */}
@@ -629,7 +629,7 @@ export const SettingsPage: React.FC = () => {
         <div className="border-t border-slate-100" />
 
         {/* BAGIAN BAWAH: INFORMASI AKUN & GRID 2 KOLOM */}
-        <div className="p-7 sm:p-8 space-y-7">
+        <div className="p-4 sm:p-8 space-y-7">
           
           {/* Header Bar: Ikon User + Judul 'Informasi Akun' + Tombol 'Edit Profil' */}
           <div className="flex items-center justify-between pb-2 border-b border-slate-100/70">
@@ -688,7 +688,7 @@ export const SettingsPage: React.FC = () => {
                       - Jika Terverifikasi: ada 'Ganti Email' dan 'Putus Tautan'
                   */}
                   {!isOtpInputOpen && !isEditingEmail && !isChangingVerifiedEmail && (
-                    <div className="flex items-center gap-3 mt-2">
+                    <div className="flex items-center gap-3 mt-2 flex-wrap">
                       {isEmailVerified ? (
                         <>
                           <button
@@ -738,9 +738,9 @@ export const SettingsPage: React.FC = () => {
 
               {/* Workflow Ganti Email Yang Sudah Terverifikasi: OTP Wajib Dikirim ke Email Saat Ini */}
               {isChangingVerifiedEmail && isEmailVerified && (
-                <div className="pl-15 pt-1 max-w-md">
+                <div className="mt-3 p-3.5 sm:p-4 bg-slate-50/95 rounded-2xl border border-slate-200/90 sm:ml-15 max-w-md space-y-3 shadow-2xs">
                   {verifiedEmailStep === 'SEND_OTP' && (
-                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+                    <div className="space-y-2.5">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
                           <Lock className="w-3.5 h-3.5 text-indigo-600" />
@@ -749,20 +749,20 @@ export const SettingsPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={handleCancelChangeEmail}
-                          className="text-slate-400 hover:text-slate-600 text-xs cursor-pointer"
+                          className="text-slate-400 hover:text-slate-600 text-xs cursor-pointer p-1"
                         >
                           ✕
                         </button>
                       </div>
                       <p className="text-xs text-slate-600 leading-relaxed">
-                        Untuk mengubah email akun, kirim kode OTP ke email saat ini: <strong className="font-mono text-indigo-700">{userEmail}</strong>
+                        Untuk mengubah email akun, kirim kode OTP ke email saat ini: <strong className="font-mono text-indigo-700 break-all">{userEmail}</strong>
                       </p>
-                      <div className="flex items-center gap-2 pt-0.5">
+                      <div className="flex items-center gap-2 pt-0.5 flex-wrap">
                         <button
                           type="button"
                           disabled={isSendingOtp}
                           onClick={handleSendCurrentEmailOtp}
-                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all cursor-pointer shadow-xs disabled:opacity-50"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all cursor-pointer shadow-xs disabled:opacity-50"
                         >
                           <Send className="w-3.5 h-3.5" />
                           <span>{isSendingOtp ? 'Mengirim...' : 'Kirim Kode OTP'}</span>
@@ -770,7 +770,7 @@ export const SettingsPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={handleCancelChangeEmail}
-                          className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 text-xs font-medium hover:bg-slate-100 cursor-pointer"
+                          className="px-3.5 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-medium hover:bg-slate-100 cursor-pointer"
                         >
                           Batal
                         </button>
@@ -779,7 +779,7 @@ export const SettingsPage: React.FC = () => {
                   )}
 
                   {verifiedEmailStep === 'VERIFY_OTP' && (
-                    <div className="p-3.5 rounded-xl bg-indigo-50/50 border border-indigo-200 space-y-2.5">
+                    <div className="space-y-2.5">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-slate-800">
                           Masukkan Kode OTP
@@ -787,45 +787,46 @@ export const SettingsPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={handleCancelChangeEmail}
-                          className="text-slate-400 hover:text-slate-600 text-xs cursor-pointer"
+                          className="text-slate-400 hover:text-slate-600 text-xs cursor-pointer p-1"
                         >
                           ✕
                         </button>
                       </div>
                       <p className="text-xs text-slate-600">
-                        Kode 6 digit telah dikirim ke <strong className="font-mono text-indigo-700">{userEmail}</strong>. Periksa inbox atau spam Gmail Anda.
+                        Kode 6 digit telah dikirim ke <strong className="font-mono text-indigo-700 break-all">{userEmail}</strong>. Periksa inbox atau spam Gmail Anda.
                       </p>
                       {otpError && (
-                        <p className="text-xs text-rose-600 font-medium">
+                        <div className="p-2 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-600 font-medium">
                           {otpError}
-                        </p>
+                        </div>
                       )}
-                      <form onSubmit={handleVerifyCurrentEmailOtp} className="space-y-2">
-                        <div className="flex items-center gap-2">
+                      <form onSubmit={handleVerifyCurrentEmailOtp} className="space-y-2.5">
+                        <div className="w-full flex items-center gap-2">
                           <input
                             type="text"
                             inputMode="numeric"
                             maxLength={6}
+                            pattern="[0-9]*"
                             autoFocus
                             value={enteredOtp}
                             onChange={(e) => setEnteredOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                             placeholder="6 Digit OTP"
-                            className="w-36 px-3 py-1.5 rounded-lg border border-slate-300 text-center text-sm font-mono tracking-widest text-slate-900 focus:border-indigo-600 focus:outline-none bg-white"
+                            className="flex-1 min-w-0 px-3 py-2 rounded-xl border border-slate-300 bg-white text-center text-sm font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-slate-900 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none shadow-2xs"
                           />
                           <button
                             type="submit"
                             disabled={isVerifyingOtp || enteredOtp.length !== 6}
-                            className="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all cursor-pointer shadow-xs disabled:opacity-50"
+                            className="shrink-0 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all cursor-pointer shadow-xs disabled:opacity-50 whitespace-nowrap"
                           >
                             {isVerifyingOtp ? 'Memverifikasi...' : 'Verifikasi OTP'}
                           </button>
                         </div>
-                        <div className="flex items-center gap-2 pt-1">
+                        <div className="flex items-center gap-2 pt-0.5 flex-wrap text-xs">
                           <button
                             type="button"
                             disabled={resendCooldown > 0 || isSendingOtp}
                             onClick={handleSendCurrentEmailOtp}
-                            className="text-xs text-indigo-600 hover:text-indigo-800 font-medium cursor-pointer disabled:opacity-50"
+                            className="text-indigo-600 hover:text-indigo-800 font-medium cursor-pointer disabled:opacity-50"
                           >
                             {resendCooldown > 0 ? `Kirim Ulang (${resendCooldown}s)` : 'Kirim Ulang OTP'}
                           </button>
@@ -833,7 +834,7 @@ export const SettingsPage: React.FC = () => {
                           <button
                             type="button"
                             onClick={handleCancelChangeEmail}
-                            className="text-xs text-slate-500 hover:text-slate-700 cursor-pointer"
+                            className="text-slate-500 hover:text-slate-700 cursor-pointer"
                           >
                             Batal
                           </button>
@@ -843,7 +844,7 @@ export const SettingsPage: React.FC = () => {
                   )}
 
                   {verifiedEmailStep === 'NEW_EMAIL' && (
-                    <div className="p-3.5 rounded-xl bg-emerald-50/60 border border-emerald-200 space-y-2.5">
+                    <div className="space-y-2.5">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-emerald-900 flex items-center gap-1.5">
                           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
@@ -852,7 +853,7 @@ export const SettingsPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={handleCancelChangeEmail}
-                          className="text-slate-400 hover:text-slate-600 text-xs cursor-pointer"
+                          className="text-slate-400 hover:text-slate-600 text-xs cursor-pointer p-1"
                         >
                           ✕
                         </button>
@@ -868,20 +869,20 @@ export const SettingsPage: React.FC = () => {
                           value={newEmailToSave}
                           onChange={(e) => setNewEmailToSave(e.target.value)}
                           placeholder="contoh: akunbaru@gmail.com"
-                          className="flex-1 px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-mono text-slate-900 focus:border-indigo-600 focus:outline-none bg-white"
+                          className="flex-1 min-w-0 px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-mono text-slate-900 focus:border-indigo-600 focus:outline-none shadow-2xs"
                         />
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1.5 shrink-0">
                           <button
                             type="button"
                             onClick={handleCancelChangeEmail}
-                            className="px-2.5 py-1.5 rounded-lg border border-slate-200 text-slate-600 text-xs font-medium hover:bg-slate-100 cursor-pointer"
+                            className="px-3 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-medium hover:bg-slate-100 cursor-pointer"
                           >
                             Batal
                           </button>
                           <button
                             type="submit"
                             disabled={!newEmailToSave.trim() || newEmailToSave.trim().toLowerCase() === (userEmail || '').trim().toLowerCase()}
-                            className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs disabled:opacity-50"
+                            className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs disabled:opacity-50 whitespace-nowrap"
                           >
                             Simpan Email Baru
                           </button>
@@ -894,7 +895,7 @@ export const SettingsPage: React.FC = () => {
 
               {/* Inline Edit Email Address (Ketika Email Belum Terverifikasi) */}
               {isEditingEmail && !isEmailVerified && !isOtpInputOpen && (
-                <div className="pl-15 pt-1 max-w-md">
+                <div className="mt-3 p-3.5 sm:p-4 bg-slate-50/95 rounded-2xl border border-slate-200/90 sm:ml-15 max-w-md space-y-2 shadow-2xs">
                   <form onSubmit={handleSaveEmailAddress} className="flex flex-col sm:flex-row gap-2">
                     <input
                       type="email"
@@ -903,22 +904,22 @@ export const SettingsPage: React.FC = () => {
                       value={targetEmail}
                       onChange={(e) => setTargetEmail(e.target.value)}
                       placeholder="contoh: akunanda@gmail.com"
-                      className="flex-1 px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-mono text-slate-900 focus:border-indigo-600 focus:outline-none"
+                      className="flex-1 min-w-0 px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-mono text-slate-900 focus:border-indigo-600 focus:outline-none shadow-2xs"
                     />
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5 shrink-0">
                       <button
                         type="button"
                         onClick={() => {
                           setIsEditingEmail(false);
                           setTargetEmail(userEmail);
                         }}
-                        className="px-2.5 py-1.5 rounded-lg border border-slate-200 text-slate-600 text-xs font-medium hover:bg-slate-100 cursor-pointer"
+                        className="px-3 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-medium hover:bg-slate-100 cursor-pointer"
                       >
                         Batal
                       </button>
                       <button
                         type="submit"
-                        className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs"
+                        className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs whitespace-nowrap"
                       >
                         Simpan Email
                       </button>
@@ -929,27 +930,28 @@ export const SettingsPage: React.FC = () => {
 
               {/* Form Verifikasi OTP Riil Untuk Email Belum Terverifikasi */}
               {isOtpInputOpen && !isEmailVerified && (
-                <div className="pl-15 pt-2 space-y-2.5 max-w-md">
-                  <div className="flex items-center justify-between text-xs text-slate-700">
-                    <span>
-                      Kode OTP telah dikirim ke: <strong className="font-mono text-indigo-700">{targetEmail}</strong>
+                <div className="mt-3 p-3.5 sm:p-4 bg-slate-50/95 rounded-2xl border border-slate-200/90 sm:ml-15 max-w-md space-y-3 shadow-2xs">
+                  <div className="flex items-start justify-between gap-2 text-xs text-slate-700">
+                    <span className="leading-relaxed">
+                      Kode OTP telah dikirim ke: <strong className="font-mono text-indigo-700 font-semibold break-all">{targetEmail}</strong>
                     </span>
                     <button
                       type="button"
                       onClick={() => setIsOtpInputOpen(false)}
-                      className="text-slate-400 hover:text-slate-600 cursor-pointer text-xs"
+                      className="text-slate-400 hover:text-slate-600 p-1 -mr-1 -mt-1 cursor-pointer text-xs shrink-0"
+                      title="Tutup"
                     >
                       ✕
                     </button>
                   </div>
 
                   {otpError && (
-                    <p className="text-xs text-rose-600 font-medium">
+                    <div className="p-2 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-600 font-medium">
                       {otpError}
-                    </p>
+                    </div>
                   )}
 
-                  <form onSubmit={handleVerifyOtp} className="flex items-center gap-2">
+                  <form onSubmit={handleVerifyOtp} className="w-full flex items-center gap-2">
                     <input
                       type="text"
                       inputMode="numeric"
@@ -959,23 +961,23 @@ export const SettingsPage: React.FC = () => {
                       onChange={(e) => setEnteredOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                       placeholder="6 Digit OTP"
                       autoFocus
-                      className="w-40 px-3 py-1.5 rounded-lg border border-slate-300 text-center font-mono font-bold tracking-widest text-sm text-slate-900 focus:border-indigo-600 focus:outline-none"
+                      className="flex-1 min-w-0 px-3 py-2 rounded-xl border border-slate-300 bg-white text-center font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-sm text-slate-900 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none shadow-2xs"
                     />
                     <button
                       type="submit"
                       disabled={isVerifyingOtp || enteredOtp.length !== 6}
-                      className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs disabled:opacity-50"
+                      className="shrink-0 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs font-bold transition-all cursor-pointer shadow-xs disabled:opacity-50 whitespace-nowrap"
                     >
-                      {isVerifyingOtp ? 'Memverifikasi...' : 'Verifikasi'}
+                      {isVerifyingOtp ? 'Memproses...' : 'Verifikasi'}
                     </button>
                   </form>
 
-                  <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
+                  <div className="flex items-center justify-between gap-2 flex-wrap text-xs text-slate-500 pt-0.5">
                     <button
                       type="button"
                       onClick={() => handleSendOtp(targetEmail)}
                       disabled={isSendingOtp || resendCooldown > 0}
-                      className="inline-flex items-center gap-1 text-indigo-600 hover:text-indigo-800 font-semibold cursor-pointer disabled:opacity-50"
+                      className="inline-flex items-center gap-1.5 text-indigo-600 hover:text-indigo-800 font-semibold cursor-pointer disabled:opacity-50"
                     >
                       <RefreshCw className={`w-3 h-3 ${isSendingOtp ? 'animate-spin' : ''}`} />
                       <span>{resendCooldown > 0 ? `Kirim Ulang (${resendCooldown}s)` : 'Kirim Ulang OTP'}</span>
@@ -1374,11 +1376,11 @@ export const SettingsPage: React.FC = () => {
                   </div>
                 )}
 
-                <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+                <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 pt-2 border-t border-slate-100">
                   <button
                     type="button"
                     onClick={handleCloseUnlinkModal}
-                    className="px-3.5 py-2 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer"
+                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer text-center"
                   >
                     Batal
                   </button>
@@ -1386,7 +1388,7 @@ export const SettingsPage: React.FC = () => {
                     type="button"
                     disabled={isSendingUnlinkOtp}
                     onClick={handleSendUnlinkOtp}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-colors cursor-pointer disabled:opacity-50"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-colors cursor-pointer disabled:opacity-50"
                   >
                     <Send className="w-3.5 h-3.5" />
                     <span>{isSendingUnlinkOtp ? 'Mengirim OTP...' : 'Kirim Kode OTP Verifikasi'}</span>
@@ -1442,18 +1444,18 @@ export const SettingsPage: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+                <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 pt-2 border-t border-slate-100">
                   <button
                     type="button"
                     onClick={handleCloseUnlinkModal}
-                    className="px-3.5 py-2 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer"
+                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer text-center"
                   >
                     Batal
                   </button>
                   <button
                     type="submit"
                     disabled={isVerifyingUnlink || unlinkOtp.trim().length !== 6}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-colors cursor-pointer disabled:opacity-50"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-colors cursor-pointer disabled:opacity-50"
                   >
                     <Unlink className="w-3.5 h-3.5" />
                     <span>{isVerifyingUnlink ? 'Memproses...' : 'Verifikasi & Putus Tautan'}</span>

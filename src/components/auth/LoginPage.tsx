@@ -401,18 +401,18 @@ export const LoginPage: React.FC = () => {
               <h1 className="text-lg lg:text-xl font-extrabold text-[#0f172a] tracking-wide font-sans">
                 IPHONE REPAIR MEDAN
               </h1>
-              <p className="text-[10px] lg:text-[11px] font-semibold text-slate-400 uppercase tracking-[0.15em] mt-0.5">
+              <p className="text-[10px] lg:text-[11px] font-bold text-slate-600 uppercase tracking-[0.15em] mt-0.5">
                 SISTEM PENGELOLAAN INVENTARIS
               </p>
             </div>
           </div>
 
           {/* Central Orbital Schematic Illustration */}
-          <div className="relative w-64 h-64 mx-auto my-auto flex items-center justify-center">
+          <div className="relative w-64 h-64 mx-auto my-auto flex items-center justify-center" aria-hidden="true">
             
             {/* Sparkle star on left */}
             <div className="absolute left-1 top-24 text-indigo-400 pointer-events-none">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 opacity-80">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 opacity-80" aria-hidden="true">
                 <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
               </svg>
             </div>
@@ -472,25 +472,19 @@ export const LoginPage: React.FC = () => {
             {/* Mobile Branding Header */}
             <div className="md:hidden text-center mb-6 pb-4 border-b border-slate-100">
               <div className="inline-flex items-center justify-center gap-2.5 mb-1.5">
-                {/* ========================================================================= */}
-                {/* [GANTI LOGO DISINI DI VS CODE - MOBILE]                                    */}
-                {/* Ganti elemen SVG Apple di dalam div di bawah ini dengan logo Anda sendiri:  */}
-                {/* Contoh: <img src="/logo-anda.png" alt="Logo" className="w-6 h-6 object-contain" /> */}
-                {/* ========================================================================= */}
                 <div className="w-9 h-9 rounded-xl bg-white shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden">
-                  <svg viewBox="0 0 170 170" fill="none" className="w-5 h-5">
+                  <svg viewBox="0 0 170 170" fill="none" className="w-5 h-5" aria-hidden="true">
                     <path
                       d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.08-7.7-7.94-12.04-14.58-6.19-9.5-10.9-20.2-14.13-32.08-3.23-11.89-4.85-23.47-4.85-34.76 0-14.24 3.7-26.15 11.09-35.73 7.39-9.58 16.7-14.45 27.93-14.61 5.33 0 11.02 1.34 17.06 4.02 6.04 2.68 10.05 4.08 12.04 4.2 1.76-.24 5.92-1.68 12.49-4.33 6.56-2.65 12.24-3.88 17.03-3.69 11.28.66 20.35 4.96 27.2 12.89-9.8 5.93-14.61 14.28-14.43 25.06.18 8.65 3.51 15.86 9.99 21.63 6.48 5.77 14.16 9.07 23.04 9.9-2.47 7.42-5.46 14.74-8.98 21.96zM119.22 31.84c0-7.39 2.67-14.18 8.01-20.36 5.34-6.19 11.96-9.84 19.86-10.96.65 1.74.98 3.5.98 5.27 0 7.39-2.73 14.23-8.19 20.52-5.46 6.3-12.2 9.97-20.22 11.02-.32-1.74-.44-3.56-.44-5.49z"
                       fill="#2563eb"
                     />
                   </svg>
                 </div>
-                {/* ========================================================================= */}
                 <span className="text-base font-extrabold text-[#0f172a] tracking-wide">
                   IPHONE REPAIR MEDAN
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 font-medium">
+              <p className="text-[11px] text-slate-600 font-semibold">
                 SISTEM PENGELOLAAN INVENTARIS
               </p>
             </div>
@@ -502,18 +496,18 @@ export const LoginPage: React.FC = () => {
                   LOGIN PENGGUNA
                 </h2>
                 {/* Blue-to-purple indicator pill + dot */}
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5" aria-hidden="true">
                   <div className="h-1.5 w-8 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600" />
                   <div className="w-1.5 h-1.5 rounded-full bg-indigo-600" />
                 </div>
               </div>
-              <p className="text-xs sm:text-sm text-slate-400 font-medium mt-1">
+              <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1">
                 Masuk untuk mengelola data inventaris
               </p>
             </div>
 
             {errorMsg && (
-              <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-600 font-medium text-center animate-shake">
+              <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 font-semibold text-center animate-shake" role="alert">
                 {errorMsg}
               </div>
             )}
@@ -523,44 +517,46 @@ export const LoginPage: React.FC = () => {
               
               {/* Field 1: Email Akun (Gmail) */}
               <div>
-                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label htmlFor="input-login-email" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   ALAMAT EMAIL
                 </label>
-                <div className="relative rounded-xl border border-slate-200 bg-[#f8fafc] focus-within:bg-white focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition-all px-3.5 py-2.5 flex items-center gap-3">
-                  <Mail className="w-4.5 h-4.5 text-slate-400 shrink-0 stroke-[1.75]" />
+                <div className="relative rounded-xl border border-slate-300 bg-[#f8fafc] focus-within:bg-white focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-100 transition-all px-3.5 py-2.5 flex items-center gap-3">
+                  <Mail className="w-4.5 h-4.5 text-slate-500 shrink-0 stroke-[1.75]" aria-hidden="true" />
                   <input
                     id="input-login-email"
                     type="email"
                     required
+                    autoComplete="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="nama@gmail.com"
-                    className="w-full bg-transparent border-none outline-none focus:ring-0 text-sm text-slate-800 placeholder-slate-400 font-medium py-0"
+                    className="w-full bg-transparent border-none outline-none focus:ring-0 text-sm text-slate-900 placeholder-slate-500 font-medium py-0"
                   />
                 </div>
               </div>
 
               {/* Field 2: Kata Sandi */}
               <div>
-                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label htmlFor="input-login-password" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   KATA SANDI
                 </label>
-                <div className="relative rounded-xl border border-slate-200 bg-[#f8fafc] focus-within:bg-white focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition-all px-3.5 py-2.5 flex items-center gap-3">
-                  <Lock className="w-4.5 h-4.5 text-slate-400 shrink-0 stroke-[1.75]" />
+                <div className="relative rounded-xl border border-slate-300 bg-[#f8fafc] focus-within:bg-white focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-100 transition-all px-3.5 py-2.5 flex items-center gap-3">
+                  <Lock className="w-4.5 h-4.5 text-slate-500 shrink-0 stroke-[1.75]" aria-hidden="true" />
                   <input
                     id="input-login-password"
                     type={showPassword ? 'text' : 'password'}
                     required
+                    autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full bg-transparent border-none outline-none focus:ring-0 text-sm text-slate-800 placeholder-slate-400 font-medium py-0"
+                    className="w-full bg-transparent border-none outline-none focus:ring-0 text-sm text-slate-900 placeholder-slate-500 font-medium py-0"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="text-slate-400 hover:text-slate-600 transition-colors p-0.5 cursor-pointer"
-                    title={showPassword ? 'Sembunyikan sandi' : 'Tampilkan sandi'}
+                    className="text-slate-500 hover:text-slate-700 transition-colors p-1 cursor-pointer"
+                    aria-label={showPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'}
                   >
                     {showPassword ? (
                       <EyeOff className="w-4 h-4 stroke-[1.75]" />
@@ -573,12 +569,13 @@ export const LoginPage: React.FC = () => {
 
               {/* Options Row: Ingat Saya & Lupa Password */}
               <div className="flex items-center justify-between text-xs pt-1">
-                <label className="flex items-center gap-2 cursor-pointer select-none text-slate-700 hover:text-slate-900 font-semibold transition-colors">
+                <label className="flex items-center gap-2 cursor-pointer select-none text-slate-800 hover:text-slate-950 font-semibold transition-colors">
                   <input
                     id="check-remember-me"
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
+                    aria-label="Ingat Saya"
                     className="w-4 h-4 rounded text-blue-600 border-slate-300 focus:ring-blue-500 cursor-pointer"
                   />
                   <span>Ingat Saya</span>
@@ -586,7 +583,7 @@ export const LoginPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowForgotModal(true)}
-                  className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline cursor-pointer"
+                  className="text-xs font-bold text-blue-700 hover:text-blue-900 hover:underline cursor-pointer"
                 >
                   Lupa kata sandi?
                 </button>
@@ -597,10 +594,11 @@ export const LoginPage: React.FC = () => {
                 id="btn-submit-login"
                 type="submit"
                 disabled={isLoading}
+                aria-label="Login ke Sistem"
                 className="relative overflow-hidden w-full mt-2 py-3 px-5 rounded-xl bg-gradient-to-r from-[#0d3ea8] via-[#1246c2] to-[#1d4ed8] hover:brightness-105 active:scale-[0.99] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-lg shadow-blue-700/25 hover:shadow-blue-700/35 transition-all cursor-pointer flex items-center justify-center gap-2.5"
               >
                 {/* Internal fluid wave on the right side */}
-                <div className="absolute right-0 top-0 bottom-0 w-44 pointer-events-none">
+                <div className="absolute right-0 top-0 bottom-0 w-44 pointer-events-none" aria-hidden="true">
                   <svg viewBox="0 0 160 50" preserveAspectRatio="none" fill="none" className="w-full h-full">
                     <defs>
                       <linearGradient id="btnWaveGrad" x1="0%" y1="50%" x2="100%" y2="50%">
@@ -617,7 +615,7 @@ export const LoginPage: React.FC = () => {
                   </svg>
                 </div>
                 <span className="relative z-10">{isLoading ? 'MEMPROSES MASUK...' : 'LOGIN KE SISTEM'}</span>
-                <ArrowRight className="w-4.5 h-4.5 relative z-10" />
+                <ArrowRight className="w-4.5 h-4.5 relative z-10" aria-hidden="true" />
               </button>
             </form>
           </div>
@@ -625,11 +623,11 @@ export const LoginPage: React.FC = () => {
           {/* Akses Instan Demo (1-Klik) */}
           <div className="mt-7 pt-5 border-t border-slate-100 text-center w-full max-w-sm mx-auto">
             <div className="relative flex py-1 items-center mb-3">
-              <div className="flex-grow border-t border-slate-200/80"></div>
-              <span className="flex-shrink mx-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              <div className="flex-grow border-t border-slate-300"></div>
+              <span className="flex-shrink mx-3 text-[11px] font-bold text-slate-600 uppercase tracking-widest">
                 AKSES INSTAN DEMO (1-KLIK)
               </span>
-              <div className="flex-grow border-t border-slate-200/80"></div>
+              <div className="flex-grow border-t border-slate-300"></div>
             </div>
 
             <div className="grid grid-cols-3 gap-2">
@@ -637,7 +635,8 @@ export const LoginPage: React.FC = () => {
                 id="btn-demo-superadmin"
                 type="button"
                 onClick={() => handleQuickLogin('superadmin@gmail.com')}
-                className="px-2.5 py-2 text-xs font-semibold rounded-xl bg-[#f8fafc] text-slate-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 border border-slate-200/80 transition-all active:scale-95 text-center shadow-xs cursor-pointer"
+                aria-label="Masuk instan sebagai Super Admin"
+                className="px-2.5 py-2 text-xs font-bold rounded-xl bg-[#f8fafc] text-slate-800 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-800 border border-slate-300 transition-all active:scale-95 text-center shadow-xs cursor-pointer"
               >
                 Super Admin
               </button>
@@ -645,7 +644,8 @@ export const LoginPage: React.FC = () => {
                 id="btn-demo-admin-cabang"
                 type="button"
                 onClick={() => handleQuickLogin('budi.santoso.medan@gmail.com')}
-                className="px-2.5 py-2 text-xs font-semibold rounded-xl bg-[#f8fafc] text-slate-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 border border-slate-200/80 transition-all active:scale-95 text-center shadow-xs cursor-pointer"
+                aria-label="Masuk instan sebagai Admin Cabang"
+                className="px-2.5 py-2 text-xs font-bold rounded-xl bg-[#f8fafc] text-slate-800 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-800 border border-slate-300 transition-all active:scale-95 text-center shadow-xs cursor-pointer"
               >
                 Admin Cabang
               </button>
@@ -653,7 +653,8 @@ export const LoginPage: React.FC = () => {
                 id="btn-demo-karyawan"
                 type="button"
                 onClick={() => handleQuickLogin('dimas.prasetyo.medan@gmail.com')}
-                className="px-2.5 py-2 text-xs font-semibold rounded-xl bg-[#f8fafc] text-slate-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 border border-slate-200/80 transition-all active:scale-95 text-center shadow-xs cursor-pointer"
+                aria-label="Masuk instan sebagai Karyawan"
+                className="px-2.5 py-2 text-xs font-bold rounded-xl bg-[#f8fafc] text-slate-800 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-800 border border-slate-300 transition-all active:scale-95 text-center shadow-xs cursor-pointer"
               >
                 Karyawan
               </button>
@@ -671,14 +672,15 @@ export const LoginPage: React.FC = () => {
           <div className="bg-white rounded-2xl max-w-sm sm:max-w-md w-full p-5 sm:p-6 shadow-2xl border border-slate-100 relative my-auto animate-in fade-in zoom-in-95 duration-150">
             <button
               onClick={handleCloseForgotModal}
-              className="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+              className="absolute top-3.5 right-3.5 text-slate-500 hover:text-slate-800 p-1.5 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+              aria-label="Tutup jendela pemulihan kata sandi"
             >
               <X className="w-4 h-4" />
             </button>
 
             {/* Header Icon & Title */}
             <div className="text-center mb-4">
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-2 border border-indigo-100 shadow-xs">
+              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center mx-auto mb-2 border border-indigo-200 shadow-xs" aria-hidden="true">
                 <Lock className="w-5 h-5 stroke-[1.75]" />
               </div>
               <h3 className="text-base font-extrabold text-slate-900">
@@ -686,11 +688,11 @@ export const LoginPage: React.FC = () => {
                 {forgotStatus === 'VERIFY_OTP' && 'Verifikasi Kode OTP'}
                 {forgotStatus === 'NEW_PASSWORD' && 'Buat Kata Sandi Baru'}
               </h3>
-              <p className="text-xs text-slate-500 mt-1 max-w-xs mx-auto leading-relaxed">
+              <p className="text-xs text-slate-600 mt-1 max-w-xs mx-auto leading-relaxed font-medium">
                 {forgotStatus === 'INPUT' && 'Masukkan email akun atau email Gmail yang telah ditautkan.'}
                 {forgotStatus === 'VERIFY_OTP' && (
                   <span>
-                    Kode 6 digit telah dikirim ke <strong className="text-indigo-600">{forgotEmail}</strong>
+                    Kode 6 digit telah dikirim ke <strong className="text-indigo-700 break-all">{forgotEmail}</strong>
                   </span>
                 )}
                 {forgotStatus === 'NEW_PASSWORD' && 'Masukkan kata sandi baru (minimal 6 karakter).'}
@@ -698,7 +700,7 @@ export const LoginPage: React.FC = () => {
             </div>
 
             {forgotError && (
-              <div className="p-2.5 mb-3 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-600 font-medium text-center">
+              <div className="p-2.5 mb-3 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-700 font-semibold text-center" role="alert">
                 {forgotError}
               </div>
             )}
@@ -707,19 +709,21 @@ export const LoginPage: React.FC = () => {
             {forgotStatus === 'INPUT' && (
               <form onSubmit={handleRequestForgot} className="space-y-3.5">
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+                  <label htmlFor="input-forgot-email" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                     Email Akun / Email Gmail
                   </label>
-                  <div className="relative rounded-xl border border-slate-200 bg-[#f8fafc] focus-within:bg-white focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-100 transition-all px-3 py-2 flex items-center gap-2.5">
-                    <Mail className="w-4 h-4 text-slate-400 shrink-0" />
+                  <div className="relative rounded-xl border border-slate-300 bg-[#f8fafc] focus-within:bg-white focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-100 transition-all px-3 py-2 flex items-center gap-2.5">
+                    <Mail className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
                     <input
+                      id="input-forgot-email"
                       type="email"
                       required
                       autoFocus
+                      autoComplete="email"
                       value={forgotEmail}
                       onChange={(e) => setForgotEmail(e.target.value)}
-                      placeholder="contoh: akunmlavn2@gmail.com"
-                      className="w-full bg-transparent border-none outline-none focus:ring-0 text-xs text-slate-800 placeholder-slate-400 font-medium py-0"
+                      placeholder="contoh: akunanda@gmail.com"
+                      className="w-full bg-transparent border-none outline-none focus:ring-0 text-xs text-slate-900 placeholder-slate-500 font-medium py-0"
                     />
                   </div>
                 </div>
@@ -728,7 +732,7 @@ export const LoginPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleCloseForgotModal}
-                    className="w-1/3 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
+                    className="w-1/3 py-2 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
                   >
                     Batal
                   </button>
@@ -747,11 +751,12 @@ export const LoginPage: React.FC = () => {
             {forgotStatus === 'VERIFY_OTP' && (
               <form onSubmit={handleVerifyOtpSubmit} className="space-y-3.5">
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5 text-center">
+                  <label htmlFor="input-forgot-otp" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 text-center">
                     Masukkan 6 Digit Kode OTP dari Gmail
                   </label>
-                  <div className="rounded-xl border border-slate-200 bg-[#f8fafc] focus-within:bg-white focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-100 transition-all p-2 flex items-center justify-center">
+                  <div className="rounded-xl border border-slate-300 bg-[#f8fafc] focus-within:bg-white focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-100 transition-all p-2 flex items-center justify-center">
                     <input
+                      id="input-forgot-otp"
                       type="text"
                       inputMode="numeric"
                       maxLength={6}
@@ -761,7 +766,7 @@ export const LoginPage: React.FC = () => {
                       value={resetOtp}
                       onChange={(e) => setResetOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                       placeholder="• • • • • •"
-                      className="w-full bg-transparent border-none outline-none focus:ring-0 text-center font-mono font-bold tracking-[0.3em] text-lg text-slate-900 placeholder-slate-300 py-0"
+                      className="w-full bg-transparent border-none outline-none focus:ring-0 text-center font-mono font-bold tracking-[0.3em] text-lg text-slate-900 placeholder-slate-400 py-0"
                     />
                   </div>
                 </div>
@@ -773,7 +778,7 @@ export const LoginPage: React.FC = () => {
                       setForgotStatus('INPUT');
                       setForgotError('');
                     }}
-                    className="w-1/3 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
+                    className="w-1/3 py-2 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
                   >
                     Ganti Email
                   </button>
@@ -791,9 +796,9 @@ export const LoginPage: React.FC = () => {
                     type="button"
                     onClick={handleResendForgotCode}
                     disabled={isSendingForgotOtp || resendCooldown > 0}
-                    className="inline-flex items-center gap-1.5 text-xs text-indigo-600 hover:text-indigo-800 font-semibold cursor-pointer disabled:opacity-50"
+                    className="inline-flex items-center gap-1.5 text-xs text-indigo-700 hover:text-indigo-900 font-bold cursor-pointer disabled:opacity-50"
                   >
-                    <RefreshCw className={`w-3.5 h-3.5 ${isSendingForgotOtp ? 'animate-spin' : ''}`} />
+                    <RefreshCw className={`w-3.5 h-3.5 ${isSendingForgotOtp ? 'animate-spin' : ''}`} aria-hidden="true" />
                     <span>
                       {resendCooldown > 0 ? `Kirim ulang (${resendCooldown}s)` : 'Kirim Ulang Kode OTP ke Gmail'}
                     </span>
@@ -806,24 +811,27 @@ export const LoginPage: React.FC = () => {
             {forgotStatus === 'NEW_PASSWORD' && (
               <form onSubmit={handleSavePasswordSubmit} className="space-y-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  <label htmlFor="input-forgot-new-pwd" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Kata Sandi Baru <span className="text-rose-500">*</span>
                   </label>
-                  <div className="relative rounded-xl border border-slate-200 bg-[#f8fafc] focus-within:bg-white focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-100 transition-all px-3 py-2 flex items-center gap-2">
-                    <Lock className="w-4 h-4 text-slate-400 shrink-0" />
+                  <div className="relative rounded-xl border border-slate-300 bg-[#f8fafc] focus-within:bg-white focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-100 transition-all px-3 py-2 flex items-center gap-2">
+                    <Lock className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
                     <input
+                      id="input-forgot-new-pwd"
                       type={showNewPassword ? 'text' : 'password'}
                       required
                       autoFocus
+                      autoComplete="new-password"
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                       placeholder="Minimal 6 karakter"
-                      className="w-full bg-transparent border-none outline-none focus:ring-0 text-xs text-slate-800 placeholder-slate-400 font-medium py-0"
+                      className="w-full bg-transparent border-none outline-none focus:ring-0 text-xs text-slate-900 placeholder-slate-500 font-medium py-0"
                     />
                     <button
                       type="button"
                       onClick={() => setShowNewPassword(!showNewPassword)}
-                      className="text-slate-400 hover:text-slate-600 cursor-pointer"
+                      className="text-slate-500 hover:text-slate-700 cursor-pointer p-0.5"
+                      aria-label={showNewPassword ? 'Sembunyikan kata sandi baru' : 'Tampilkan kata sandi baru'}
                     >
                       {showNewPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                     </button>
@@ -831,23 +839,26 @@ export const LoginPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  <label htmlFor="input-forgot-confirm-pwd" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Konfirmasi Kata Sandi Baru <span className="text-rose-500">*</span>
                   </label>
-                  <div className="relative rounded-xl border border-slate-200 bg-[#f8fafc] focus-within:bg-white focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-100 transition-all px-3 py-2 flex items-center gap-2">
-                    <Lock className="w-4 h-4 text-slate-400 shrink-0" />
+                  <div className="relative rounded-xl border border-slate-300 bg-[#f8fafc] focus-within:bg-white focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-100 transition-all px-3 py-2 flex items-center gap-2">
+                    <Lock className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
                     <input
+                      id="input-forgot-confirm-pwd"
                       type={showConfirmPassword ? 'text' : 'password'}
                       required
+                      autoComplete="new-password"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="Ulangi kata sandi baru"
-                      className="w-full bg-transparent border-none outline-none focus:ring-0 text-xs text-slate-800 placeholder-slate-400 font-medium py-0"
+                      className="w-full bg-transparent border-none outline-none focus:ring-0 text-xs text-slate-900 placeholder-slate-500 font-medium py-0"
                     />
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="text-slate-400 hover:text-slate-600 cursor-pointer"
+                      className="text-slate-500 hover:text-slate-700 cursor-pointer p-0.5"
+                      aria-label={showConfirmPassword ? 'Sembunyikan konfirmasi kata sandi' : 'Tampilkan konfirmasi kata sandi'}
                     >
                       {showConfirmPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                     </button>
