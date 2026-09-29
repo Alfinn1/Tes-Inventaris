@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { 
-  Smartphone,
   Wrench,
   Package,
   Calendar,
@@ -11,13 +10,12 @@ import {
   ArrowRight,
   Eye,
   EyeOff,
-  Sparkles,
   RefreshCw,
   X
 } from 'lucide-react';
 
 export const LoginPage: React.FC = () => {
-  const { login, requestPasswordReset, validateResetOtp, resetPasswordWithToken, showToast } = useApp();
+  const { login, requestPasswordReset, validateResetOtp, resetPasswordWithToken } = useApp();
   const [email, setEmail] = useState('superadmin@gmail.com');
   const [password, setPassword] = useState('password123');
   const [showPassword, setShowPassword] = useState(false);
@@ -480,11 +478,11 @@ export const LoginPage: React.FC = () => {
                     />
                   </svg>
                 </div>
-                <span className="text-base font-extrabold text-[#0f172a] tracking-wide">
+                <h1 className="text-base sm:text-lg font-extrabold text-[#0f172a] tracking-wide">
                   IPHONE REPAIR MEDAN
-                </span>
+                </h1>
               </div>
-              <p className="text-[11px] text-slate-600 font-semibold">
+              <p className="text-[11px] text-slate-600 font-semibold tracking-wider uppercase">
                 SISTEM PENGELOLAAN INVENTARIS
               </p>
             </div>
@@ -555,35 +553,35 @@ export const LoginPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="text-slate-500 hover:text-slate-700 transition-colors p-1 cursor-pointer"
+                    className="text-slate-500 hover:text-slate-700 transition-colors p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center -mr-1.5 rounded-lg cursor-pointer"
                     aria-label={showPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'}
                   >
                     {showPassword ? (
-                      <EyeOff className="w-4 h-4 stroke-[1.75]" />
+                      <EyeOff className="w-4.5 h-4.5 stroke-[1.75]" />
                     ) : (
-                      <Eye className="w-4 h-4 stroke-[1.75]" />
+                      <Eye className="w-4.5 h-4.5 stroke-[1.75]" />
                     )}
                   </button>
                 </div>
               </div>
 
-              {/* Options Row: Ingat Saya & Lupa Password */}
-              <div className="flex items-center justify-between text-xs pt-1">
-                <label className="flex items-center gap-2 cursor-pointer select-none text-slate-800 hover:text-slate-950 font-semibold transition-colors">
+              {/* Options Row: Ingat Saya & Lupa Password with min-h-[48px] tap area */}
+              <div className="flex items-center justify-between text-xs min-h-[48px] py-1">
+                <label className="flex items-center gap-2 cursor-pointer select-none text-slate-800 hover:text-slate-950 font-semibold transition-colors min-h-[44px] py-1">
                   <input
                     id="check-remember-me"
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
                     aria-label="Ingat Saya"
-                    className="w-4 h-4 rounded text-blue-600 border-slate-300 focus:ring-blue-500 cursor-pointer"
+                    className="w-4.5 h-4.5 rounded text-blue-600 border-slate-300 focus:ring-blue-500 cursor-pointer"
                   />
                   <span>Ingat Saya</span>
                 </label>
                 <button
                   type="button"
                   onClick={() => setShowForgotModal(true)}
-                  className="text-xs font-bold text-blue-700 hover:text-blue-900 hover:underline cursor-pointer"
+                  className="min-h-[44px] py-1 px-1 flex items-center text-xs font-bold text-blue-700 hover:text-blue-900 hover:underline cursor-pointer"
                 >
                   Lupa kata sandi?
                 </button>
@@ -595,7 +593,7 @@ export const LoginPage: React.FC = () => {
                 type="submit"
                 disabled={isLoading}
                 aria-label="Login ke Sistem"
-                className="relative overflow-hidden w-full mt-2 py-3 px-5 rounded-xl bg-gradient-to-r from-[#0d3ea8] via-[#1246c2] to-[#1d4ed8] hover:brightness-105 active:scale-[0.99] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-lg shadow-blue-700/25 hover:shadow-blue-700/35 transition-all cursor-pointer flex items-center justify-center gap-2.5"
+                className="relative overflow-hidden w-full mt-2 min-h-[48px] py-3.5 px-5 rounded-xl bg-gradient-to-r from-[#0d3ea8] via-[#1246c2] to-[#1d4ed8] hover:brightness-105 active:scale-[0.99] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-lg shadow-blue-700/25 hover:shadow-blue-700/35 transition-all cursor-pointer flex items-center justify-center gap-2.5"
               >
                 {/* Internal fluid wave on the right side */}
                 <div className="absolute right-0 top-0 bottom-0 w-44 pointer-events-none" aria-hidden="true">
@@ -636,7 +634,7 @@ export const LoginPage: React.FC = () => {
                 type="button"
                 onClick={() => handleQuickLogin('superadmin@gmail.com')}
                 aria-label="Masuk instan sebagai Super Admin"
-                className="px-2.5 py-2 text-xs font-bold rounded-xl bg-[#f8fafc] text-slate-800 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-800 border border-slate-300 transition-all active:scale-95 text-center shadow-xs cursor-pointer"
+                className="min-h-[48px] px-2.5 py-2.5 text-xs font-bold rounded-xl bg-[#f8fafc] text-slate-800 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-800 border border-slate-300 transition-all active:scale-95 flex items-center justify-center text-center shadow-xs cursor-pointer"
               >
                 Super Admin
               </button>
@@ -645,7 +643,7 @@ export const LoginPage: React.FC = () => {
                 type="button"
                 onClick={() => handleQuickLogin('budi.santoso.medan@gmail.com')}
                 aria-label="Masuk instan sebagai Admin Cabang"
-                className="px-2.5 py-2 text-xs font-bold rounded-xl bg-[#f8fafc] text-slate-800 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-800 border border-slate-300 transition-all active:scale-95 text-center shadow-xs cursor-pointer"
+                className="min-h-[48px] px-2.5 py-2.5 text-xs font-bold rounded-xl bg-[#f8fafc] text-slate-800 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-800 border border-slate-300 transition-all active:scale-95 flex items-center justify-center text-center shadow-xs cursor-pointer"
               >
                 Admin Cabang
               </button>
@@ -654,7 +652,7 @@ export const LoginPage: React.FC = () => {
                 type="button"
                 onClick={() => handleQuickLogin('dimas.prasetyo.medan@gmail.com')}
                 aria-label="Masuk instan sebagai Karyawan"
-                className="px-2.5 py-2 text-xs font-bold rounded-xl bg-[#f8fafc] text-slate-800 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-800 border border-slate-300 transition-all active:scale-95 text-center shadow-xs cursor-pointer"
+                className="min-h-[48px] px-2.5 py-2.5 text-xs font-bold rounded-xl bg-[#f8fafc] text-slate-800 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-800 border border-slate-300 transition-all active:scale-95 flex items-center justify-center text-center shadow-xs cursor-pointer"
               >
                 Karyawan
               </button>
@@ -683,11 +681,11 @@ export const LoginPage: React.FC = () => {
               <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center mx-auto mb-2 border border-indigo-200 shadow-xs" aria-hidden="true">
                 <Lock className="w-5 h-5 stroke-[1.75]" />
               </div>
-              <h3 className="text-base font-extrabold text-slate-900">
+              <h2 className="text-base font-extrabold text-slate-900">
                 {forgotStatus === 'INPUT' && 'Pemulihan Kata Sandi'}
                 {forgotStatus === 'VERIFY_OTP' && 'Verifikasi Kode OTP'}
                 {forgotStatus === 'NEW_PASSWORD' && 'Buat Kata Sandi Baru'}
-              </h3>
+              </h2>
               <p className="text-xs text-slate-600 mt-1 max-w-xs mx-auto leading-relaxed font-medium">
                 {forgotStatus === 'INPUT' && 'Masukkan email akun atau email Gmail yang telah ditautkan.'}
                 {forgotStatus === 'VERIFY_OTP' && (
@@ -732,14 +730,14 @@ export const LoginPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleCloseForgotModal}
-                    className="w-1/3 py-2 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
+                    className="w-1/3 min-h-[44px] py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center"
                   >
                     Batal
                   </button>
                   <button
                     type="submit"
                     disabled={isSendingForgotOtp || !forgotEmail.trim()}
-                    className="w-2/3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all cursor-pointer disabled:opacity-50"
+                    className="w-2/3 min-h-[44px] py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center"
                   >
                     {isSendingForgotOtp ? 'Mengirim ke Gmail...' : 'Kirim Kode OTP'}
                   </button>
@@ -778,14 +776,14 @@ export const LoginPage: React.FC = () => {
                       setForgotStatus('INPUT');
                       setForgotError('');
                     }}
-                    className="w-1/3 py-2 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
+                    className="w-1/3 min-h-[44px] py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center"
                   >
                     Ganti Email
                   </button>
                   <button
                     type="submit"
                     disabled={isValidatingOtp || resetOtp.length !== 6}
-                    className="w-2/3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all cursor-pointer disabled:opacity-50"
+                    className="w-2/3 min-h-[44px] py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center"
                   >
                     {isValidatingOtp ? 'Memverifikasi...' : 'Verifikasi OTP'}
                   </button>
@@ -796,7 +794,7 @@ export const LoginPage: React.FC = () => {
                     type="button"
                     onClick={handleResendForgotCode}
                     disabled={isSendingForgotOtp || resendCooldown > 0}
-                    className="inline-flex items-center gap-1.5 text-xs text-indigo-700 hover:text-indigo-900 font-bold cursor-pointer disabled:opacity-50"
+                    className="inline-flex items-center justify-center min-h-[44px] py-2 px-3 gap-1.5 text-xs text-indigo-700 hover:text-indigo-900 font-bold cursor-pointer disabled:opacity-50"
                   >
                     <RefreshCw className={`w-3.5 h-3.5 ${isSendingForgotOtp ? 'animate-spin' : ''}`} aria-hidden="true" />
                     <span>
@@ -830,7 +828,7 @@ export const LoginPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setShowNewPassword(!showNewPassword)}
-                      className="text-slate-500 hover:text-slate-700 cursor-pointer p-0.5"
+                      className="text-slate-500 hover:text-slate-700 cursor-pointer p-2 min-w-[36px] min-h-[36px] flex items-center justify-center"
                       aria-label={showNewPassword ? 'Sembunyikan kata sandi baru' : 'Tampilkan kata sandi baru'}
                     >
                       {showNewPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
@@ -857,7 +855,7 @@ export const LoginPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="text-slate-500 hover:text-slate-700 cursor-pointer p-0.5"
+                      className="text-slate-500 hover:text-slate-700 cursor-pointer p-2 min-w-[36px] min-h-[36px] flex items-center justify-center"
                       aria-label={showConfirmPassword ? 'Sembunyikan konfirmasi kata sandi' : 'Tampilkan konfirmasi kata sandi'}
                     >
                       {showConfirmPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
@@ -869,14 +867,14 @@ export const LoginPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleCloseForgotModal}
-                    className="w-1/3 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
+                    className="w-1/3 min-h-[44px] py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center"
                   >
                     Batal
                   </button>
                   <button
                     type="submit"
                     disabled={isSubmittingReset || newPassword.length < 6}
-                    className="w-2/3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all cursor-pointer disabled:opacity-50"
+                    className="w-2/3 min-h-[44px] py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center"
                   >
                     {isSubmittingReset ? 'Menyimpan...' : 'Simpan Sandi Baru'}
                   </button>

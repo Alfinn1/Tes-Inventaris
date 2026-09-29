@@ -15,6 +15,17 @@ const port = 3000;
 
 app.use(express.json());
 
+// Serve static robots.txt and sitemap.xml explicitly
+app.get('/robots.txt', (_req, res) => {
+  res.type('text/plain');
+  res.send('User-agent: *\nAllow: /\n\nSitemap: https://iphonerepairmedan.com/sitemap.xml\n');
+});
+
+app.get('/sitemap.xml', (_req, res) => {
+  res.type('application/xml');
+  res.send('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://iphonerepairmedan.com/</loc>\n    <lastmod>2026-09-29</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n</urlset>\n');
+});
+
 // API route to send OTP (supports email linking verification and password reset)
 app.post('/api/send-otp', async (req, res) => {
   try {
